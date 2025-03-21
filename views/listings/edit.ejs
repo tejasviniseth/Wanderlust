@@ -1,0 +1,81 @@
+<% layout("/layouts/boilerplate") -%>
+
+<!-- <body> -->
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+    <h3>Edit this Listing</h3>
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+        <!-- TITLE -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control" required>
+            <div class="valid-feedback">Title looks good!!</div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]"class="form-control" required><%= listing.description %></textarea>
+            <div class="invalid-feedback">Enter description</div>
+        </div>
+
+        <!--  PREVIOUS IMAGE -->
+        <div class="mb-3">
+            <h5>Original Listing Image </h5><br>
+            <img src="<%= listing.image %>" alt="Original Listing Image">
+        </div>
+
+
+        <!-- IMAGE -->
+        <div class="mb-3">
+            <label for="image" class="form-label"> Upload New Image</label>
+            <input type="file" name="listing[image]" class="form-control">
+            <div class="invalid-feedback">Enter a valid image URL</div>
+        </div>
+
+        <div class="row">
+            <!-- PRICE -->
+            <div class="mb-3 col-md-4">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" name="listing[price]"  value="<%= listing.price%>"class="form-control" required>
+                <div class="invalid-feedback">Price should be valid</div>
+            </div>
+
+            <!-- COUNTRY -->
+            <div class="mb-3 col-md-8">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" name="listing[country]"  value="<%= listing.country %>"class="form-control" required>
+                <div class="invalid-feedback">Country name should be valid</div>
+            </div>
+        </div>
+        <!-- LOCATION -->
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" name="listing[location]"  value="<%= listing.location %>"class="form-control" required>
+            <div class="invalid-feedback">Location should be valid</div>
+        </div>
+
+        <!-- CATEGORY DROPDOWN -->
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="listing[category]" id="category" class="form-select" required>
+            <option value="" disabled <%= !listing.category ? "selected" : "" %>>Select a Category</option>
+            <option value="Room" <%= listing.category === "Room" ? "selected" : "" %>>Room</option>
+            <option value="Mountain" <%= listing.category === "Mountain" ? "selected" : "" %>>Mountain</option>
+            <option value="Castle" <%= listing.category === "Castle" ? "selected" : "" %>>Castle</option>
+            <option value="Pool" <%= listing.category === "Pool" ? "selected" : "" %>>Pool</option>
+            <option value="Camp" <%= listing.category === "Camp" ? "selected" : "" %>>Camp</option>
+            <option value="Farm" <%= listing.category === "Farm" ? "selected" : "" %>>Farm</option>
+            <option value="Arctic" <%= listing.category === "Arctic" ? "selected" : "" %>>Arctic</option>
+            <option value="Beachfront" <%= listing.category === "Beachfront" ? "selected" : "" %>>Beachfront</option>
+            <option value="Treehouse" <%= listing.category === "Treehouse" ? "selected" : "" %>>Treehouse</option>
+            </select>
+            <div class="invalid-feedback">Please select a category.</div>
+        </div>
+
+        <button class="btn btn-dark edit-btn mt-3">Edit</button>
+    </form>
+
+</div>
+
+<!-- </body> -->
